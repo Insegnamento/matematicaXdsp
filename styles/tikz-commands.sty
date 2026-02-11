@@ -1,0 +1,7 @@
+% tikz-commands.sty 
+% Libreria di comandi TikZ personalizzati 
+% Autori: Giulio Romano De Mattia, Pietro Barale, Marco Di Gasbarro 
+\NeedsTeXFormat{LaTeX2e} \ProvidesPackage{tikz-commands}[2025/01/01 Custom TikZ Commands] \RequirePackage{tikz} % Comando per creare sequenze di box con parole 
+% Uso: \wordboxes[larghezza]{opzioni stile}{parola1,parola2,parola3} 
+% Se larghezza è omessa, usa 1.5cm di default \makeatletter 
+% Definisci il contatore UNA VOLTA fuori dal comando 

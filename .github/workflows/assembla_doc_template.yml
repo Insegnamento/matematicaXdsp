@@ -1,0 +1,137 @@
+# .github/workflows/assembla_doc_template.yml
+
+name: Assembla Documento con Template
+
+on:
+  push:
+    branches: [ main ]
+      
+  pull_request:
+    branches: [ main ]
+    paths:
+      - 'docs/sezioni/**'
+      - 'config.yml'
+      - '.github/scripts/**'
+      - '.github/workflows/**'
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+  
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/dmgiulioromano/latex-docker-ubuntu:2025.1-small
+
+    steps:
+    - name: Install dependencies
+      run: |
+        apt-get update
+        apt-get install -y git bash tar wget xz-utils
+        # Download in parallelo (background jobs)
+        PANDOC_VERSION=3.8.2
+        PANDOC_XREF_VERSION=0.3.22
+        wget https://github.com/jgm/pandoc/releases/download/${PANDOC_VERSION}/pandoc-${PANDOC_VERSION}-1-amd64.deb &
+        PANDOC_PID=$!
+        wget https://github.com/lierdakil/pandoc-crossref/releases/download/v${PANDOC_XREF_VERSION}/pandoc-crossref-Linux-X64.tar.xz &
+        CROSSREF_PID=$!
+        # Aspetta che i download finiscano
+        wait $PANDOC_PID
+        wait $CROSSREF_PID
+        # Installazioni in sequenza (veloci comunque)
+        apt-get install -y ./pandoc-${PANDOC_VERSION}-1-amd64.deb
+        tar -xJf pandoc-crossref-Linux-X64.tar.xz
+        mv pandoc-crossref /usr/local/bin/
+
+    - name: Installa font DejaVu
+      run: |
+        apt-get update
+        apt-get install -y fonts-dejavu fonts-dejavu-extra
+        fc-cache -fv
+
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+#    - name: Installa LilyPond
+#      run: |
+#        apt-get update
+#        apt-get install -y --no-install-recommends lilypond
+
+    - name: Installa LilyPond (binario ufficiale)
+      run: |
+        # Scarica e installa LilyPond 2.24.4
+        wget https://gitlab.com/lilypond/lilypond/-/releases/v2.24.4/downloads/lilypond-2.24.4-linux-x86_64.tar.gz
+        tar -xzf lilypond-2.24.4-linux-x86_64.tar.gz
+        # Aggiungi al PATH
+        echo "$PWD/lilypond-2.24.4/bin" >> $GITHUB_PATH
+
+    - name: Compila i frammenti musicali LilyPond
+      run: |
+        MUSIC_SRC="docs/music-src"
+        MUSIC_OUT="docs/assets/music"
+        
+        # Crea la directory di output
+        mkdir -p "$MUSIC_OUT"
+        
+        # Compila tutti i file .ly
+        for ly_file in "$MUSIC_SRC"/*.ly; do
+          if [ -f "$ly_file" ]; then
+            filename=$(basename "$ly_file" .ly)
+            echo "Compilando $ly_file..."
+            lilypond -dcrop -dno-print-pages -o "$MUSIC_OUT/$filename" "$ly_file"
+          	mv "$MUSIC_OUT/$filename.cropped.pdf" "$MUSIC_OUT/$filename.pdf"
+            # Pulisce i file temporanei
+            rm -f "$MUSIC_OUT/$filename.cropped.png"
+          fi
+        done
+
+    - name: Processa i template con Python  e Genera il PDF con Pandoc
+      run: |
+        PDF_NAME="output.pdf"
+        pandoc docs/slides.md -o "$PDF_NAME" \
+          --pdf-engine=xelatex \
+          --template=styles/template.latex \
+          -t beamer
+        echo "PDF_NAME=$PDF_NAME" >> $GITHUB_ENV
+        mkdir -p pages_artifact
+        cp "${PDF_NAME}" pages_artifact/latest.pdf
+
+#          --filter pandoc-crossref \
+
+    - uses: actions/upload-artifact@v4
+      with:
+        name: progetto-completo_pdf
+        path: "${{ env.PDF_NAME }}"
+        overwrite: true
+        
+    - name: Upload artifact per Pages
+      uses: actions/upload-pages-artifact@v4
+      with:
+        path: pages_artifact
+
+    - name: Commit del documento assemblato
+      run: |
+        cd "$GITHUB_WORKSPACE"
+        git config --global --add safe.directory "$GITHUB_WORKSPACE"
+        git config --global user.email "action@github.com"
+        git config --global user.name "GitHub Action"
+        rm -f *.pdf
+        git add -u
+        git diff --staged --quiet || git commit -m "Auto-aggiornamento documento con template [skip ci]"
+        
+    - name: Push delle modifiche
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        branch: ${{ github.ref_name }}
+        
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy su GitHub Pages
+        uses: actions/deploy-pages@v4

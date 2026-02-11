@@ -1,0 +1,436 @@
+% =============================================================================
+% TEMPLATE BEAMER SEMPLIFICATO
+% Versione pulita e commentata del template Pandoc per presentazioni
+% =============================================================================
+
+% -----------------------------------------------------------------------------
+% 1. CONFIGURAZIONE HYPERREF (link e metadati PDF)
+% -----------------------------------------------------------------------------
+\PassOptionsToPackage{unicode$for(hyperrefoptions)$,$hyperrefoptions$$endfor$}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+$if(colorlinks)$
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
+$endif$
+
+% -----------------------------------------------------------------------------
+% 2. CLASSE DOCUMENTO BEAMER
+% -----------------------------------------------------------------------------
+\documentclass[
+  ignorenonframetext,                    % Ignora testo fuori dai frame
+$if(fontsize)$
+  $fontsize$,                            % Dimensione font (es: 10pt, 11pt, 12pt)
+$endif$
+$if(aspectratio)$
+  aspectratio=$aspectratio$,             % Ratio schermo (es: 169 per 16:9, 43 per 4:3)
+$endif$
+$if(handout)$
+  handout,                               % Modalità handout (stampa)
+$endif$
+$for(classoption)$
+  $classoption$$sep$,                    % Altre opzioni personalizzate
+$endfor$
+]{beamer}
+
+% -----------------------------------------------------------------------------
+% 3. PACCHETTI BEAMER ESSENZIALI
+% -----------------------------------------------------------------------------
+\usepackage{pgfpages}                    % Per layout multipagina
+\setbeamertemplate{caption}[numbered]    % Numerazione didascalie
+\setbeamertemplate{caption label separator}{: }
+\setbeamercolor{caption name}{fg=normal text.fg}
+
+\setbeamercolor{normal text}{fg=black}
+\setbeamercolor{structure}{fg=black}
+\setbeamercolor{frametitle}{fg=black}
+\setbeamercolor{title}{fg=black}
+\setbeamercolor{subtitle}{fg=black}
+\setbeamercolor{author}{fg=black}
+\setbeamercolor{date}{fg=black}
+\setbeamercolor{institute}{fg=black}
+\setbeamercolor{part title}{fg=black}       
+\setbeamercolor{section title}{fg=black}    
+\setbeamercolor{subsection title}{fg=black} 
+\setbeamercolor{section in toc}{fg=black}
+
+% Dimensioni font per titoli
+\setbeamerfont{title}{size=\Huge}
+\setbeamerfont{section title}{size=\huge}        % header 1
+\setbeamerfont{frametitle}{size=\LARGE}           % header 2
+\setbeamerfont{subsection title}{size=\Large}     % header 3
+
+\makeatletter
+\setbeamertemplate{frametitle}{
+  \nointerlineskip
+  \begin{beamercolorbox}[wd=\paperwidth,sep=15pt,center]{frametitle}
+    \MakeUppercase{\insertframetitle}\par
+    \ifx\insertframesubtitle\@empty\else
+      \usebeamerfont{framesubtitle}\insertframesubtitle\par
+    \fi
+  \end{beamercolorbox}
+}
+\makeatother
+
+% Navigazione (di default nascosta)
+\beamertemplatenavigationsymbols$if(navigation)$$navigation$$else$empty$endif$
+
+% Opzioni Beamer aggiuntive
+$for(beameroption)$
+\setbeameroption{$beameroption$}
+$endfor$
+
+% Previeni interruzioni di slide in mezzo a un paragrafo
+\widowpenalties 1 10000
+\raggedbottom
+
+% -----------------------------------------------------------------------------
+% 3.1 PACCHETTI PER LA MIUZIC
+% -----------------------------------------------------------------------------
+
+\usepackage{tikz}
+
+
+% -----------------------------------------------------------------------------
+% 4. PAGINE SEZIONE/SOTTOSEZIONE (opzionale)
+% -----------------------------------------------------------------------------
+$if(section-titles)$
+% Template per pagine di parte
+\setbeamertemplate{part page}{
+  \centering
+  \begin{beamercolorbox}[sep=16pt,center]{part title}
+    \usebeamerfont{part title}\MakeUppercase{\insertpart}\par
+  \end{beamercolorbox}
+}
+
+% Template per pagine di sezione
+\setbeamertemplate{section page}{
+  \centering
+  \begin{beamercolorbox}[sep=12pt,center]{part title}
+    \usebeamerfont{section title}\MakeUppercase{\insertsection}\par
+  \end{beamercolorbox}
+}
+
+% Template per pagine di sottosezione
+\setbeamertemplate{subsection page}{
+  \centering
+  \begin{beamercolorbox}[sep=8pt,center]{part title}
+    \usebeamerfont{subsection title}\MakeUppercase{\insertsubsection}\par
+  \end{beamercolorbox}
+}
+
+% Inserisci automaticamente pagine di sezione
+\AtBeginPart{\frame{\partpage}}
+\AtBeginSection{
+  \ifbibliography
+  \else
+    \frame{\sectionpage}
+  \fi
+}
+\AtBeginSubsection{\frame{\subsectionpage}}
+$endif$
+
+% -----------------------------------------------------------------------------
+% 5. PACCHETTI MATEMATICI
+% -----------------------------------------------------------------------------
+\usepackage{amsmath,amssymb}
+
+% -----------------------------------------------------------------------------
+% 6. GESTIONE FONT
+% -----------------------------------------------------------------------------
+\usepackage{iftex}
+\ifPDFTeX
+  % Se usi pdfLaTeX
+  \usepackage[$if(fontenc)$$fontenc$$else$T1$endif$]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp}
+\else
+  % Se usi XeLaTeX o LuaLaTeX
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+  
+  % Imposta DejaVu Sans come font principale
+  \setmainfont{DejaVu Sans}
+  \setsansfont{DejaVu Sans}
+  \setmonofont{DejaVu Sans Mono}
+\fi
+
+% Font di default (Latin Modern) - solo se non specificato
+$if(fontfamily)$
+$else$
+\usepackage{lmodern}
+$endif$
+
+% -----------------------------------------------------------------------------
+% 7. TEMA BEAMER
+% -----------------------------------------------------------------------------
+$if(theme)$
+\usetheme[$for(themeoptions)$$themeoptions$$sep$,$endfor$]{$theme$}
+$endif$
+$if(colortheme)$
+\usecolortheme{$colortheme$}
+$endif$
+$if(fonttheme)$
+\usefonttheme{$fonttheme$}
+$endif$
+$if(innertheme)$
+\useinnertheme{$innertheme$}
+$endif$
+$if(outertheme)$
+\useoutertheme{$outertheme$}
+$endif$
+
+% -----------------------------------------------------------------------------
+% 8. FONT PERSONALIZZATI (opzionale)
+% -----------------------------------------------------------------------------
+$if(fontfamily)$
+\usepackage[$for(fontfamilyoptions)$$fontfamilyoptions$$sep$,$endfor$]{$fontfamily$}
+$endif$
+
+\ifPDFTeX\else
+$if(mainfont)$
+  \setmainfont[$for(mainfontoptions)$$mainfontoptions$$sep$,$endfor$]{$mainfont$}
+$endif$
+$if(sansfont)$
+  \setsansfont[$for(sansfontoptions)$$sansfontoptions$$sep$,$endfor$]{$sansfont$}
+$endif$
+$if(monofont)$
+  \setmonofont[$for(monofontoptions)$$monofontoptions$$sep$,$endfor$]{$monofont$}
+$endif$
+$if(mathfont)$
+  \setmathfont[$for(mathfontoptions)$$mathfontoptions$$sep$,$endfor$]{$mathfont$}
+$endif$
+\fi
+
+% -----------------------------------------------------------------------------
+% 9. PACCHETTI UTILITÀ
+% -----------------------------------------------------------------------------
+% Quote dritte in ambienti verbatim
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+
+% Microtypografia (migliora spaziatura)
+\IfFileExists{microtype.sty}{
+  \usepackage[$for(microtypeoptions)$$microtypeoptions$$sep$,$endfor$]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath}
+}{}
+
+% Colori
+\usepackage{xcolor}
+
+% Segnalibro per bibliografia
+\newif\ifbibliography
+
+% -----------------------------------------------------------------------------
+% 10. CODICE E SYNTAX HIGHLIGHTING
+% -----------------------------------------------------------------------------
+$if(listings)$
+\usepackage{listings}
+\newcommand{\passthrough}[1]{#1}
+\lstset{defaultdialect=[5.3]Lua}
+\lstset{defaultdialect=[x86masm]Assembler}
+$endif$
+
+$if(highlighting-macros)$
+$highlighting-macros$
+$endif$
+
+% -----------------------------------------------------------------------------
+% 11. TABELLE
+% -----------------------------------------------------------------------------
+$if(tables)$
+\usepackage{longtable,booktabs,array}
+$if(multirow)$
+\usepackage{multirow}
+$endif$
+\usepackage{calc}
+\usepackage{caption}
+% Fai funzionare caption con longtable
+\makeatletter
+\def\fnum@table{\tablename~\thetable}
+\makeatother
+$endif$
+
+% -----------------------------------------------------------------------------
+% 12. IMMAGINI E GRAFICA
+% -----------------------------------------------------------------------------
+$if(graphics)$
+\usepackage{graphicx}
+\makeatletter
+% Scala immagini per adattarle
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{%
+  \sbox\pandoc@box{#1}%
+  \ifdim\wd\pandoc@box>\linewidth
+    \resizebox{\linewidth}{!}{\usebox\pandoc@box}%
+  \else
+    \ifdim\ht\pandoc@box>\textheight
+      \resizebox{!}{\textheight}{\usebox\pandoc@box}%
+    \else
+      \usebox\pandoc@box
+    \fi
+  \fi
+}
+\makeatother
+\let\Oldincludegraphics\includegraphics
+\renewcommand{\includegraphics}[2][]{\pandocbounded{\Oldincludegraphics[#1]{#2}}}
+$endif$
+
+$if(svg)$
+\usepackage{svg}
+$endif$
+
+% -----------------------------------------------------------------------------
+% 13. FORMATTAZIONE TESTO
+% -----------------------------------------------------------------------------
+% Evita linee troppo lunghe
+\setlength{\emergencystretch}{3em}
+
+% Lista compatta
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+% Numerazione sezioni
+$if(numbersections)$
+\setcounter{secnumdepth}{$if(secnumdepth)$$secnumdepth$$else$5$endif$}
+$else$
+\setcounter{secnumdepth}{-\maxdimen}
+$endif$
+
+% -----------------------------------------------------------------------------
+% 14. CITAZIONI E BIBLIOGRAFIA
+% -----------------------------------------------------------------------------
+$if(natbib)$
+\usepackage[$natbiboptions$]{natbib}
+\bibliographystyle{$if(biblio-style)$$biblio-style$$else$plainnat$endif$}
+$endif$
+
+$if(biblatex)$
+\usepackage[$if(biblio-style)$style=$biblio-style$,$endif$$for(biblatexoptions)$$biblatexoptions$$sep$,$endfor$]{biblatex}
+$for(bibliography)$
+\addbibresource{$bibliography$}
+$endfor$
+$endif$
+
+$if(csquotes)$
+\usepackage{csquotes}
+$endif$
+
+% -----------------------------------------------------------------------------
+% 15. HYPERREF E LINK
+% -----------------------------------------------------------------------------
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{}
+\urlstyle{$if(urlstyle)$$urlstyle$$else$same$endif$}
+
+\hypersetup{
+$if(title-meta)$
+  pdftitle={$title-meta$},
+$endif$
+$if(author-meta)$
+  pdfauthor={$author-meta$},
+$endif$
+$if(lang)$
+  pdflang={$lang$},
+$endif$
+$if(subject)$
+  pdfsubject={$subject$},
+$endif$
+$if(keywords)$
+  pdfkeywords={$for(keywords)$$keywords$$sep$, $endfor$},
+$endif$
+$if(colorlinks)$
+  colorlinks=true,
+  linkcolor={$if(linkcolor)$$linkcolor$$else$Maroon$endif$},
+  filecolor={$if(filecolor)$$filecolor$$else$Maroon$endif$},
+  citecolor={$if(citecolor)$$citecolor$$else$Maroon$endif$},
+  urlcolor={$if(urlcolor)$$urlcolor$$else$Maroon$endif$},
+$else$
+$if(boxlinks)$
+$else$
+  hidelinks,
+$endif$
+$endif$
+  pdfcreator={LaTeX via pandoc}
+}
+
+% -----------------------------------------------------------------------------
+% 16. HEADER PERSONALIZZATI (da inserire nel YAML)
+% -----------------------------------------------------------------------------
+$for(header-includes)$
+$header-includes$
+$endfor$
+
+% -----------------------------------------------------------------------------
+% 17. INFORMAZIONI DOCUMENTO
+% -----------------------------------------------------------------------------
+$if(title)$
+\title{$title$$if(thanks)$\thanks{$thanks$}$endif$}
+$endif$
+$if(subtitle)$
+\subtitle{$subtitle$}
+$endif$
+$if(author)$
+\author{$for(author)$$author$$sep$ \and $endfor$}
+$endif$
+$if(date)$
+\date{$date$}
+$endif$
+$if(institute)$
+\institute{$for(institute)$$institute$$sep$ \and $endfor$}
+$endif$
+$if(titlegraphic)$
+\titlegraphic{\includegraphics$if(titlegraphicoptions)$[$for(titlegraphicoptions)$$titlegraphicoptions$$sep$, $endfor$]$endif${$titlegraphic$}}
+$endif$
+$if(logo)$
+\logo{\includegraphics{$logo$}}
+$endif$
+
+% =============================================================================
+% INIZIO DOCUMENTO
+% =============================================================================
+\begin{document}
+
+% -----------------------------------------------------------------------------
+% SLIDE TITOLO
+% -----------------------------------------------------------------------------
+$if(title)$
+\frame{\titlepage}
+$endif$
+
+% -----------------------------------------------------------------------------
+% INDICE (opzionale)
+% -----------------------------------------------------------------------------
+$if(toc)$
+\begin{frame}[allowframebreaks]
+$if(toc-title)$
+  \frametitle{$toc-title$}
+$endif$
+  \setcounter{tocdepth}{$toc-depth$}
+  \tableofcontents
+\end{frame}
+$endif$
+
+% -----------------------------------------------------------------------------
+% CONTENUTO DELLE SLIDE (inserito da Pandoc)
+% -----------------------------------------------------------------------------
+$body$
+
+% -----------------------------------------------------------------------------
+% BIBLIOGRAFIA (se presente)
+% -----------------------------------------------------------------------------
+$if(natbib)$
+$if(bibliography)$
+\begin{frame}[allowframebreaks]{$biblio-title$}
+  \bibliographytrue
+  \bibliography{$for(bibliography)$$bibliography$$sep$,$endfor$}
+\end{frame}
+$endif$
+$endif$
+
+$if(biblatex)$
+\begin{frame}[allowframebreaks]{$biblio-title$}
+  \bibliographytrue
+  \printbibliography[heading=none]
+\end{frame}
+$endif$
+
+\end{document}
