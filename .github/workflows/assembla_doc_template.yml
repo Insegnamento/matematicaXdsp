@@ -29,7 +29,7 @@ jobs:
     - name: Install dependencies
       run: |
         apt-get update
-        apt-get install -y git bash tar wget xz-utils
+        apt-get install -y git bash tar wget xz-utils fonts-fira-sans
         # Download in parallelo (background jobs)
         PANDOC_VERSION=3.8.2
         PANDOC_XREF_VERSION=0.3.22

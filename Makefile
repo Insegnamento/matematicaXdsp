@@ -6,12 +6,14 @@ pan:
         --template=styles/template.latex \
         -t beamer \
  		-o presentazione.pdf 
-	pandoc docs/discorso/discorsi_slides.md -o discorsi_slides.pdf
-	
+	pandoc docs/discorso/discorsi_slides.md --pdf-engine=xelatex -o discorsi_slides.pdf
+
+open:
+	open *.pdf
 sync:
 	git add .
 	git commit -m "."
-	git pull --quiet
+	git pull --no-edit --quiet
 	git push
 
 .PHONY: sync pan
