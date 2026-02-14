@@ -10,6 +10,7 @@ navigation: empty
 section-titles: true
 mainfont: "Noto Sans"
 sansfont: "Noto Sans"
+mathfont: "Noto Sans Math"
 fontsize: 10pt
 lang: it
 header-includes:
@@ -112,14 +113,14 @@ Onda sinusoidale 440 Hz (La)
 **Caratteristiche fondamentali:**
 
 - Regola precisa e ripetibile
-- Stesso input → sempre stesso output
+- Stesso input $→$ sempre stesso output
 - NON è casuale, è deterministica
 
 **Esempi concreti:**
 
-- Vending machine: soldi → snack
-- Pedale effetto: suono pulito → suono distorto
-- Inviluppo: tempo → ampiezza
+- Vending machine: soldi $→$ snack
+- Pedale effetto: suono pulito $→$ suono distorto
+- Inviluppo: tempo $→$ ampiezza
 :::
 ::: {.column width="45%"}
 \begin{tikzpicture}[scale=0.9]
@@ -211,9 +212,9 @@ $y = f(x)$ oppure $f(x) = y$ **Si legge:** "y uguale f di x"
 
 **Esempi:**
 
-- $f(x) = 2x$ → "f di x uguale due per x"
-- $g(t) = \sin(t)$ → "g di t uguale seno di t"
-- $A(t)$ → "A in funzione di t"
+- $f(x) = 2x$ $→$ "f di x uguale due per x"
+- $g(t) = \sin(t)$ $→$ "g di t uguale seno di t"
+- $A(t)$ $→$ "A in funzione di t"
 :::
 ::: {.column width="45%"}
 \begin{tikzpicture}[scale=0.9]
@@ -382,7 +383,7 @@ $y = f(x)$ oppure $f(x) = y$ **Si legge:** "y uguale f di x"
 - (0, 0) = origine
 
 **Importante:** l'ordine conta!
-- (2, 3) ≠ (3, 2)
+- (2, 3) $≠$ (3, 2)
 :::
 ::: {.column width="45%"}
 \begin{tikzpicture}[scale=1.3]
@@ -438,8 +439,8 @@ $y = f(x)$ oppure $f(x) = y$ **Si legge:** "y uguale f di x"
 **Test visivo (vertical line test):**
 
 - Traccia una linea verticale
-- Se tocca la curva in più di un punto → NON è funzione
-- Se tocca sempre un solo punto → È funzione
+- Se tocca la curva in più di un punto $→$ NON è funzione
+- Se tocca sempre un solo punto $→$ È funzione
 :::
 ::: {.column width="45%"}
 \begin{tikzpicture}[scale=1]
@@ -566,9 +567,9 @@ dove $k$ è un numero fisso (costante)
 - Pendenza = 0 (non sale né scende)
 
 **Esempi matematici:**
-- $y = 5$ → sempre 5
-- $y = 0$ → sempre zero
-- $y = -2$ → sempre -2
+- $y = 5$ $→$ sempre 5
+- $y = 0$ $→$ sempre zero
+- $y = -2$ $→$ sempre -2
 
 **Non dipende da x!**
 :::
@@ -618,9 +619,9 @@ dove $k$ è un numero fisso (costante)
 **Parametri:**
 
 - $m$ = pendenza (slope)
-  - $m > 0$ → sale
-  - $m < 0$ → scende
-  - $m = 0$ → costante
+  - $m > 0$ $→$ sale
+  - $m < 0$ $→$ scende
+  - $m = 0$ $→$ costante
 - $q$ = intercetta (dove tocca l'asse Y)
 
 **Proprietà:**
@@ -631,7 +632,7 @@ dove $k$ è un numero fisso (costante)
 
 **Esempio:** $y = 2x + 1$
 
-- Pendenza = 2 (ogni +1 in x → +2 in y)
+- Pendenza = 2 (ogni +1 in x $→$ +2 in y)
 - Parte da y = 1 quando x = 0
 :::
 ::: {.column width="45%"}
@@ -694,7 +695,7 @@ dove $k$ è un numero fisso (costante)
 
 **4. Velocity mapping**
 
-- MIDI velocity → volume
+- MIDI velocity $→$ volume
 - Relazione lineare (spesso)
 :::
 ::: {.column width="45%"}
@@ -743,9 +744,9 @@ $$y = ax^2 + bx + c$$
 **Parametri:**
 
 - $a$ = curvatura
-  - $a > 0$ → parabola verso l'alto
-  - $a < 0$ → parabola verso il basso
-  - $|a|$ grande → più "stretta"
+  - $a > 0$ $→$ parabola verso l'alto
+  - $a < 0$ $→$ parabola verso il basso
+  - $|a|$ grande $→$ più "stretta"
 
 **Caratteristiche:**
 
@@ -803,7 +804,7 @@ Più $a$ è grande, più la curva è "ripida"
 
 **2. Velocity curves**
 
-- MIDI velocity → loudness
+- MIDI velocity $→$ loudness
 - Risposta quadratica = più espressiva
 - Tocchi leggeri più sensibili
 
@@ -866,8 +867,8 @@ dove $e \approx 2.718$ (numero di Eulero)
 
 - Crescita/decrescita proporzionale al valore attuale
 - **NON lineare** - cambia sempre più velocemente
-- $b > 0$ → crescita esponenziale
-- $b < 0$ → decadimento esponenziale
+- $b > 0$ $→$ crescita esponenziale
+- $b < 0$ $→$ decadimento esponenziale
 
 **Proprietà chiave:**
 
@@ -926,7 +927,7 @@ dove $e \approx 2.718$ (numero di Eulero)
 
 **2. Percezione logaritmica**
 
-- Volume percepito ≠ ampiezza lineare
+- Volume percepito $≠$ ampiezza lineare
 - dB = scala logaritmica
 - $dB = 20 \log_{10}(A)$
 
@@ -1041,7 +1042,7 @@ $$y = A \cdot \sin(\omega x + \varphi)$$
 **1. Tono puro (oscillatore)**
 
 - $y(t) = A \cdot \sin(2\pi f_0 t)$
-- $f_0$ = 440 Hz → La centrale
+- $f_0$ = 440 Hz $→$ La centrale
 - Onda sinusoidale = frequenza singola
 
 **2. Building block della sintesi**
@@ -1297,9 +1298,9 @@ Per catturare una frequenza $f$, devi campionarla **almeno 2 volte per ciclo** $
 
 **Esempi pratici:**
 
-- 44.1 kHz → max 22.05 kHz (copre udibile)
-- 48 kHz → max 24 kHz
-- 96 kHz → max 48 kHz (overkill per orecchio)
+- 44.1 kHz $→$ max 22.05 kHz (copre udibile)
+- 48 kHz $→$ max 24 kHz
+- 96 kHz $→$ max 48 kHz (overkill per orecchio)
 
 **Sotto il limite Nyquist:**
 
@@ -1406,7 +1407,7 @@ Per catturare una frequenza $f$, devi campionarla **almeno 2 volte per ciclo** $
 \end{tikzpicture}
 
 \vspace{0.2cm}
-Troppo pochi samples → frequenza sbagliata
+Troppo pochi samples $→$ frequenza sbagliata
 :::
 ::::::::::::::
 
@@ -1421,8 +1422,8 @@ Troppo pochi samples → frequenza sbagliata
 
 **Bit depth (profondità di bit):** Quanti livelli di ampiezza possibili
 - 8 bit = 256 livelli (2⁸)
-- 16 bit = 65536 livelli (2¹⁶) → CD
-- 24 bit = 16.777.216 livelli → pro
+- 16 bit = 65536 livelli (2¹⁶) $→$ CD
+- 24 bit = 16.777.216 livelli $→$ pro
 - 32 bit float = ~4 miliardi di livelli
 
 **Quantization error:**
@@ -1433,8 +1434,8 @@ Troppo pochi samples → frequenza sbagliata
 
 **Dynamic range:**
 
-- 16 bit ≈ 96 dB
-- 24 bit ≈ 144 dB
+- 16 bit $≈$ 96 dB
+- 24 bit $≈$ 144 dB
 :::
 ::: {.column width="45%"}
 \begin{tikzpicture}
@@ -1553,7 +1554,7 @@ Array di numeri, non curva continua
 ::: {.column width="55%"}
 **Il viaggio che abbiamo fatto:**
 
-1. **Funzioni** = relazioni input→output
+1. **Funzioni** = relazioni input$→$output
    - Macchine trasformatrici con regole precise
    - Dominio e codominio
 
@@ -1610,7 +1611,7 @@ Array di numeri, non curva continua
 
 - Funzioni descrivono onde
 - Teorema di Nyquist: $f_s \geq 2f_{max}$
-- Quantizzazione: ampiezza → numeri discreti
+- Quantizzazione: ampiezza $→$ numeri discreti
 
 **Mondo Digitale:**
 - Sequenza di numeri
@@ -1636,7 +1637,7 @@ Array di numeri, non curva continua
     ytick={},
     tick label style={font=\tiny},
     samples=200,
-    title={\small Analogico → Digitale}
+    title={\small Analogico $→$ Digitale}
 ]
 
 % Analogico (continuo)

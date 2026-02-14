@@ -152,6 +152,8 @@ $endif$
   \setmainfont{DejaVu Sans}
   \setsansfont{DejaVu Sans}
   \setmonofont{DejaVu Sans Mono}
+  \setmathfont{Noto Sans Math}
+
 \fi
 
 % Font di default (Latin Modern) - solo se non specificato

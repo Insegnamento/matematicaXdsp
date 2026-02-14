@@ -1,6 +1,7 @@
 ---
-mainfont: "Fira Sans"
-sansfont: "Fira Sans"
+mainfont: "Noto Sans"
+sansfont: "Noto Sans"
+mathfont: "Noto Sans Math"
 geometry:
   - a4paper
   - left=3cm
@@ -44,7 +45,7 @@ dove t è il tempo in secondi.
 
 Ma il vero potere della visione matematica del suono emerge quando iniziamo a parlare di trasformazioni. Ogni processo audio che applichi è una funzione matematica che trasforma il segnale in ingresso in un segnale in uscita.
 
-Un filtro passa-basso è una funzione che, data una frequenza in ingresso, decide quanto guadagno dare in uscita. Sotto la frequenza di taglio, il guadagno è circa 1 (il segnale passa inalterato). Sopra la frequenza di taglio, il guadagno diminuisce progressivamente. Questa relazione frequenza → guadagno è una funzione matematica, e la forma di questa funzione determina il carattere del filtro (Butterworth, Chebyshev, ellittico, ecc.).
+Un filtro passa-basso è una funzione che, data una frequenza in ingresso, decide quanto guadagno dare in uscita. Sotto la frequenza di taglio, il guadagno è circa 1 (il segnale passa inalterato). Sopra la frequenza di taglio, il guadagno diminuisce progressivamente. Questa relazione frequenza $→$ guadagno è una funzione matematica, e la forma di questa funzione determina il carattere del filtro (Butterworth, Chebyshev, ellittico, ecc.).
 
 Un riverbero è qualcosa di più complesso: è una convoluzione. Tecnicamente, prendi il tuo segnale dry e lo "convolvi" con la risposta impulsiva di uno spazio. La convoluzione è un'operazione matematica che, punto per punto, combina due funzioni. Il risultato? Il tuo suono che sembra provenire da quello spazio.
 
@@ -146,7 +147,7 @@ Il dominio è il tempo (da quando premi il tasto a quando finisce il release). I
 
 Un filtro è, fondamentalmente, una funzione che dice "per ogni frequenza che entra, quanto guadagno le do in uscita?". Un filtro passa-basso lascia passare le basse frequenze e attenua le alte. Matematicamente, se chiamiamo questa funzione G(f) - guadagno in funzione della frequenza - potremmo avere:
 
-- Per f < f_cutoff (sotto la frequenza di taglio): G(f) ≈ 1 (passa quasi inalterato, 0 dB)
+- Per f < f_cutoff (sotto la frequenza di taglio): G(f) $≈$ 1 (passa quasi inalterato, 0 dB)
 - Per f > f_cutoff (sopra la frequenza di taglio): G(f) decresce, tipicamente come 1/(f/f_cutoff)^n dove n determina la "pendenza" del filtro (6 dB/ottava per n=1, 12 dB/ottava per n=2, ecc.)
 
 Il dominio è la frequenza (tipicamente 20 Hz - 20 kHz, lo spettro udibile). Il codominio è il guadagno, spesso espresso in dB. Questo è fondamentale per capire equalizzatori, filtri, crossover, qualsiasi cosa riguardi lo shaping spettrale.
@@ -214,9 +215,9 @@ L'origine (0, 0) è sempre il punto di riferimento. In un grafico ampiezza-tempo
 
 Ora colleghiamo il piano cartesiano alle funzioni. Una funzione y = f(x) può essere rappresentata come una curva sul piano cartesiano. Ogni punto (x, y) sulla curva soddisfa l'equazione y = f(x).
 
-Cosa significa? Significa che se prendi qualsiasi punto sulla curva e guardi le sue coordinate, la seconda coordinata (y) è esattamente uguale a f applicata alla prima coordinata (x). Se la funzione è f(x) = x², e prendi il punto (2, 4) sulla curva, verifica: f(2) = 2² = 4. Funziona. Il punto (3, 9) è sulla curva perché f(3) = 3² = 9. Il punto (3, 8) NON è sulla curva perché f(3) ≠ 8.
+Cosa significa? Significa che se prendi qualsiasi punto sulla curva e guardi le sue coordinate, la seconda coordinata (y) è esattamente uguale a f applicata alla prima coordinata (x). Se la funzione è f(x) = x², e prendi il punto (2, 4) sulla curva, verifica: f(2) = 2² = 4. Funziona. Il punto (3, 9) è sulla curva perché f(3) = 3² = 9. Il punto (3, 8) NON è sulla curva perché f(3) $≠$ 8.
 
-Nel grafico vedi una parabola - la curva della funzione f(x) = 0.3x². I punti rossi sono punti specifici sulla curva. Per esempio, il punto a x = 2 ha y = 0.3 × 2² = 0.3 × 4 = 1.2. Infatti nel grafico vedi che quando x = 2, la curva è all'altezza y ≈ 1.2.
+Nel grafico vedi una parabola - la curva della funzione f(x) = 0.3x². I punti rossi sono punti specifici sulla curva. Per esempio, il punto a x = 2 ha y = 0.3 × 2² = 0.3 × 4 = 1.2. Infatti nel grafico vedi che quando x = 2, la curva è all'altezza y $≈$ 1.2.
 
 Ma c'è una proprietà cruciale che distingue le funzioni da generiche curve: per ogni valore di x, ci può essere UN SOLO valore di y. Questo è il cuore della definizione di funzione. Non puoi avere un x che punta a due y diversi.
 
@@ -242,7 +243,7 @@ Nel grafico che vedi ho tracciato un'onda sinusoidale pura a 440 Hz - il La cent
 
 Noti i punti rossi? Quello all'origine (0, 0) significa "al tempo zero, l'ampiezza è zero". Il punto al picco superiore è a circa (0.57 ms, 1), che significa "dopo 0.57 millisecondi, l'ampiezza è al massimo positivo". Il punto successivo a zero è a (1.14 ms, 0), che significa "dopo 1.14 millisecondi, l'ampiezza è tornata a zero".
 
-La distanza tra questi zeri - circa 2.27 millisecondi - è il periodo dell'onda. Il periodo è 1/frequenza. Se la frequenza è 440 Hz, il periodo è 1/440 secondi ≈ 2.27 millisecondi. In 20 millisecondi, l'onda completa circa 8.8 cicli (20 ms / 2.27 ms ≈ 8.8).
+La distanza tra questi zeri - circa 2.27 millisecondi - è il periodo dell'onda. Il periodo è 1/frequenza. Se la frequenza è 440 Hz, il periodo è 1/440 secondi $≈$ 2.27 millisecondi. In 20 millisecondi, l'onda completa circa 8.8 cicli (20 ms / 2.27 ms $≈$ 8.8).
 
 Quando apri un DAW e zoomi su una forma d'onda, stai letteralmente guardando questo tipo di grafico. Se vedi oscillazioni molto ravvicinate, la frequenza è alta. Se vedi oscillazioni più lente e larghe, la frequenza è bassa. Se i picchi sono alti, il volume è alto. Se i picchi sono piccoli, il volume è basso. Se la linea è piatta a zero, c'è silenzio.
 
@@ -333,7 +334,7 @@ Nel grafico confrontiamo un attack quadratico (blu) con uno lineare (rosso). Ved
 
 **Velocity curves.** Nei controller MIDI e nei virtual instruments, spesso la relazione tra la velocity (quanto forte premi un tasto) e il volume effettivo non è lineare. Una curva quadratica - o esponenziale - può rendere la risposta più espressiva. Con una curva quadratica, i tocchi leggeri (velocity basse) hanno un range di dinamica più ampio - più controllo fine. I tocchi forti comprimono un po'. Questo simula il comportamento di molti strumenti acustici, dove la risposta non è perfettamente lineare.
 
-**Distorsione soft-clip.** Quando vuoi "saturare" un segnale audio senza il clipping brutale (taglio netto), puoi usare una funzione quadratica (o cubica) per comprimere dolcemente i picchi. La funzione y = x - (x³/3) è un'approssimazione classica: vicino a zero, y ≈ x (quasi lineare, nessuna distorsione). Quando |x| si avvicina a 1, la cubica "piega" la curva, comprimendo i picchi senza tagliarli nettamente. Il risultato è una saturazione "calda", tipica dei dispositivi analogici.
+**Distorsione soft-clip.** Quando vuoi "saturare" un segnale audio senza il clipping brutale (taglio netto), puoi usare una funzione quadratica (o cubica) per comprimere dolcemente i picchi. La funzione y = x - (x³/3) è un'approssimazione classica: vicino a zero, y $≈$ x (quasi lineare, nessuna distorsione). Quando |x| si avvicina a 1, la cubica "piega" la curva, comprimendo i picchi senza tagliarli nettamente. Il risultato è una saturazione "calda", tipica dei dispositivi analogici.
 
 **Fade smooth.** Un fade lineare suona spesso brusco, specialmente all'inizio o alla fine. Un fade quadratico - o con curva esponenziale - è più naturale. Per un fade-in: A(t) = (t/T)². All'inizio, il volume cresce lentamente (quasi impercettibile). Verso la fine, accelera. Il nostro orecchio percepisce questo come più naturale.
 
@@ -355,7 +356,7 @@ Se b < 0, hai decadimento esponenziale: e^(-x). Parti da un valore massimo, poi 
 
 Nel grafico vedi entrambe: e^x (blu) cresce esponenzialmente, e^(-x) (rosso) decade esponenzialmente. Nota che entrambe passano per il punto (0, 1), perché e^0 = 1, indipendentemente dal segno dell'esponente.
 
-Un concetto cruciale nell'esponenziale è la "costante di tempo" τ (tau). Nell'equazione y = e^(-t/τ), il parametro τ determina quanto velocemente decade. Dopo un tempo t = τ, il valore è sceso a e^(-1) ≈ 0.368, circa il 37% del valore iniziale. Dopo t = 2τ, è circa 13.5%. Dopo t = 3τ, è circa 5%. Dopo t = 5τ, è praticamente zero (meno dell'1%).
+Un concetto cruciale nell'esponenziale è la "costante di tempo" τ (tau). Nell'equazione y = e^(-t/τ), il parametro τ determina quanto velocemente decade. Dopo un tempo t = τ, il valore è sceso a e^(-1) $≈$ 0.368, circa il 37% del valore iniziale. Dopo t = 2τ, è circa 13.5%. Dopo t = 3τ, è circa 5%. Dopo t = 5τ, è praticamente zero (meno dell'1%).
 
 Nell'audio, τ è il "tempo di decadimento". Un piatto con τ = 2 secondi decade molto più lentamente di uno con τ = 0.5 secondi. Questo singolo parametro caratterizza completamente la velocità di dissipazione dell'energia.
 
@@ -389,11 +390,11 @@ La forma generale è y = A · sin(ωx + φ). Scomponiamo i parametri, perché og
 
 **A = ampiezza.** Questo parametro controlla l'altezza dell'onda, quanto oscilla sopra e sotto lo zero. Se A = 1, l'onda va da -1 a +1. Se A = 0.5, va da -0.5 a +0.5. Nell'audio, A è il volume: ampiezza maggiore = suono più forte.
 
-**ω = frequenza angolare.** Questo parametro controlla quanto velocemente l'onda oscilla. È legato alla frequenza f (in Hz) dalla relazione ω = 2πf. Se f = 440 Hz (La centrale), allora ω = 2π × 440 ≈ 2764 rad/s. Ogni secondo, l'argomento del seno avanza di 2764 radianti, completando 440 cicli completi (perché un ciclo completo è 2π radianti).
+**ω = frequenza angolare.** Questo parametro controlla quanto velocemente l'onda oscilla. È legato alla frequenza f (in Hz) dalla relazione ω = 2πf. Se f = 440 Hz (La centrale), allora ω = 2π × 440 $≈$ 2764 rad/s. Ogni secondo, l'argomento del seno avanza di 2764 radianti, completando 440 cicli completi (perché un ciclo completo è 2π radianti).
 
 **φ = fase.** Questo parametro sposta l'onda orizzontalmente. Se φ = 0, l'onda parte da zero al tempo zero. Se φ = π/2, l'onda parte dal massimo (diventa un coseno). La fase è cruciale quando combini più onde - interferenza costruttiva o distruttiva dipende dalla differenza di fase.
 
-La funzione seno è **periodica**: si ripete identicamente all'infinito. Il periodo - il tempo per un ciclo completo - è T = 2π/ω = 1/f. Se f = 440 Hz, il periodo è T = 1/440 ≈ 2.27 millisecondi. Ogni 2.27 ms, l'onda si ripete esattamente uguale.
+La funzione seno è **periodica**: si ripete identicamente all'infinito. Il periodo - il tempo per un ciclo completo - è T = 2π/ω = 1/f. Se f = 440 Hz, il periodo è T = 1/440 $≈$ 2.27 millisecondi. Ogni 2.27 ms, l'onda si ripete esattamente uguale.
 
 Nel grafico vedi y = sin(x) con A = 1, ω = 1, φ = 0. L'asse X è in radianti. L'onda passa per zero a x = 0, raggiunge il massimo (1) a x = π/2, torna a zero a x = π, raggiunge il minimo (-1) a x = 3π/2, e completa il ciclo a x = 2π. I punti rossi evidenziano i picchi massimo e minimo.
 
@@ -467,7 +468,7 @@ Il campionamento è il processo di "fotografare" il segnale continuo a intervall
 
 La frequenza di campionamento (sample rate), indicata con fs, è il numero di campioni presi al secondo, misurato in Hertz. Il CD audio usa 44100 Hz - significa 44100 campioni ogni secondo. L'audio professionale spesso usa 48000 Hz, 96000 Hz, o anche 192000 Hz per applicazioni specifiche.
 
-Il periodo di campionamento Ts è l'intervallo di tempo tra due campioni consecutivi, e è l'inverso della frequenza: Ts = 1/fs. A 44.1 kHz, Ts ≈ 22.7 microsecondi. Ogni 22.7 millesimi di millisecondo, il sistema ADC (Analog-to-Digital Converter) misura l'ampiezza del segnale e la memorizza.
+Il periodo di campionamento Ts è l'intervallo di tempo tra due campioni consecutivi, e è l'inverso della frequenza: Ts = 1/fs. A 44.1 kHz, Ts $≈$ 22.7 microsecondi. Ogni 22.7 millesimi di millisecondo, il sistema ADC (Analog-to-Digital Converter) misura l'ampiezza del segnale e la memorizza.
 
 Nel grafico vedi un'onda sinusoidale a 440 Hz (il La centrale) rappresentata in blu molto chiaro - questo è il segnale analogico continuo. I punti rossi sono i campioni presi a 44.1 kHz. In 10 millisecondi di audio, a quella frequenza di campionamento, hai circa 441 campioni. Sembra tantissimo, ma nota che l'onda a 440 Hz completa circa 4.4 cicli in quei 10 ms, quindi hai circa 100 campioni per ciclo - più che sufficienti per rappresentare fedelmente l'onda.
 
