@@ -726,7 +726,7 @@ dove $k$ è un numero fisso (costante)
 
 \vspace{0.3cm}
 
-Da 0 a 1 in 5 secondi:\\$A(t) = t/5$ per $0 \leq t \leq 5$
+Da 0 a 1 in 5 secondi: $A(t) = t/5$ per $0 \leq t \leq 5$
 :::
 ::::::::::::::
 
@@ -904,7 +904,7 @@ dove $e \approx 2.718$ (numero di Eulero)
 \node[red, font=\small] at (axis cs:1.2,1) {$e^{-x}$};
 
 % Evidenzia y=1 quando x=0
-\node[circle, fill=black, inner sep=2pt] at (axis cs:0,1) {};
+\node[circle, fill=black, inner sep=1.5pt] at (axis cs:0,1) {};
 
 \end{axis}
 \end{tikzpicture}
@@ -1020,8 +1020,8 @@ $$y = A \cdot \sin(\omega x + \varphi)$$
 \addplot[blue, very thick, domain=0:6.5] {sin(deg(x))};
 
 % Evidenzia picchi
-\node[circle, fill=red, inner sep=2pt] at (axis cs:1.57,1) {};
-\node[circle, fill=red, inner sep=2pt] at (axis cs:4.71,-1) {};
+\node[circle, fill=red, inner sep=1.5pt] at (axis cs:1.57,1) {};
+\node[circle, fill=red, inner sep=1.5pt] at (axis cs:4.71,-1) {};
 
 % Periodo
 \draw[<->, red, thick] (axis cs:0,-1.3) -- (axis cs:6.28,-1.3) node[midway, below, font=\small] {Periodo $T = 2\pi$};
@@ -1385,8 +1385,7 @@ Per catturare una frequenza $f$, devi campionarla **almeno 2 volte per ciclo** $
     xtick={},
     ytick={},
     tick label style={font=\tiny},
-    samples=200,
-    title={\small ALIASING (sotto-campionamento)}
+    samples=200
 ]
 
 % Onda vera (alta frequenza)
@@ -1399,8 +1398,8 @@ Per catturare una frequenza $f$, devi campionarla **almeno 2 volte per ciclo** $
 \addplot[red, thick, dashed, domain=0:1] {-sin(deg(2*pi*1*x))};
 
 % Annotazione
-\node[blue!30, font=\tiny, above] at (axis cs:0.3,0.9) {vera (5 Hz)};
-\node[red, font=\tiny, below] at (axis cs:0.7,0.9) {alias (1 Hz)};
+\node[blue!30, font=\tiny, above] at (axis cs:0.3,1) {vera (5 Hz)};
+\node[red, font=\tiny, above] at (axis cs:0.77,1) {alias (1 Hz)};
 \node[font=\small, red] at (axis cs:0.5,-1.2) {ERRORE};
 
 \end{axis}
