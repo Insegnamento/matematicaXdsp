@@ -8,8 +8,8 @@ colortheme: default
 aspectratio: 169
 navigation: empty
 section-titles: true
-mainfont: "Fira Sans"
-sansfont: "Fira Sans"
+mainfont: "Noto Sans"
+sansfont: "Noto Sans"
 fontsize: 10pt
 lang: it
 header-includes:
