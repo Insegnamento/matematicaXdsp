@@ -6,7 +6,7 @@ pan:
         --template=styles/template.latex \
         -t beamer \
  		-o presentazione.pdf 
-	pandoc docs/discorso/discorsi_slides.md --pdf-engine=xelatex -o discorsi_slides.pdf
+#pandoc docs/discorso/discorsi_slides.md --pdf-engine=xelatex -o discorsi_slides.pdf
 
 open:
 	open *.pdf
