@@ -28,6 +28,8 @@ jobs:
     steps:
     - name: Install dependencies
       run: |
+        add-apt-repository universe
+        apt update
         apt-get update
         apt-get install -y git bash tar wget xz-utils fonts-noto-core fonts-noto-extra fonts-noto-math
         # Download in parallelo (background jobs)
