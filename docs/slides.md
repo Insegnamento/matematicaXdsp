@@ -8,9 +8,9 @@ colortheme: default
 aspectratio: 169
 navigation: empty
 section-titles: true
-mainfont: "Noto Sans"
-sansfont: "Noto Sans"
-mathfont: "Noto Sans Math"
+mainfont: "DejaVu Sans"    
+sansfont: "DejaVu Sans"
+mathfont: "DejaVu Math TeX Gyre"
 fontsize: 10pt
 lang: it
 header-includes:
