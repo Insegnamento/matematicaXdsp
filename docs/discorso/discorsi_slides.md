@@ -1,7 +1,4 @@
 ---
-mainfont: "Noto Sans"
-sansfont: "Noto Sans"
-mathfont: "Noto Sans Math"
 geometry:
   - a4paper
   - left=3cm
