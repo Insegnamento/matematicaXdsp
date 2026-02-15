@@ -61,7 +61,7 @@ jobs:
         pandoc docs/slides.md -o "$PDF_NAME" \
           --pdf-engine=xelatex \
           --template=styles/template.latex \
-          -V mainfont="${{ env.FONT }}"" \
+          -V mainfont="${{ env.FONT }}" \
           -V sansfont="${{ env.FONT }}" \
           -V monofont="${{ env.MATH_FONT }}" \
           -t beamer
