@@ -152,7 +152,6 @@ $endif$
   \setmainfont{DejaVu Sans}
   \setsansfont{DejaVu Sans}
   \setmonofont{DejaVu Sans Mono}
-  \setmathfont{Noto Sans Math}
 
 \fi
 
