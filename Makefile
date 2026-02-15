@@ -2,11 +2,21 @@ all: pan
 
 pan:
 	pandoc docs/slides.md \
-	    --pdf-engine=xelatex \
-        --template=styles/template.latex \
-        -t beamer \
- 		-o presentazione.pdf 
-#pandoc docs/discorso/discorsi_slides.md --pdf-engine=xelatex -o discorsi_slides.pdf
+		--pdf-engine=xelatex \
+		--template=styles/template.latex \
+		-t beamer \
+		-V mainfont="DejaVu Sans" \
+		-V sansfont="DejaVu Sans" \
+		-V monofont="DejaVu Sans Mono" \
+		-V mathfont="DejaVu Math TeX Gyre" \
+		-o presentazione.pdf
+	pandoc docs/discorso/discorsi_slides.md \
+		--pdf-engine=xelatex \
+		-V mainfont="DejaVu Sans" \
+		-V sansfont="DejaVu Sans" \
+		-V monofont="DejaVu Sans Mono" \
+		-V mathfont="DejaVu Math TeX Gyre" \
+		-o discorsi_slides.pdf
 
 open:
 	open *.pdf

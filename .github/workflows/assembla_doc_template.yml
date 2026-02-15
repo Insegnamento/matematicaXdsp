@@ -29,11 +29,7 @@ jobs:
     - name: Install dependencies
       run: |
         apt-get update
-        FONT="fonts-dejavu"
-        MATH_FONT="fonts-dejavu-extra"
-        echo "MATH_FONT=$MATH_FONT" >> $GITHUB_ENV
-        echo "FONT=$FONT" >> $GITHUB_ENV
-        apt-get install -y git bash tar wget xz-utils $FONT $MATH_FONT
+        apt-get install -y git bash tar wget xz-utils fonts-dejavu fonts-dejavu-extra
         fc-cache -fv
         # Download in parallelo (background jobs)
         PANDOC_VERSION=3.8.2
@@ -61,9 +57,10 @@ jobs:
         pandoc docs/slides.md -o "$PDF_NAME" \
           --pdf-engine=xelatex \
           --template=styles/template.latex \
-          -V mainfont="${{ env.FONT }}" \
-          -V sansfont="${{ env.FONT }}" \
-          -V monofont="${{ env.MATH_FONT }}" \
+          -V mainfont="DejaVu Sans" \
+          -V sansfont="DejaVu Sans" \
+          -V monofont="DejaVu Sans Mono" \
+          -V mathfont="DejaVu Math TeX Gyre" \
           -t beamer
         echo "PDF_NAME=$PDF_NAME" >> $GITHUB_ENV
         mkdir -p pages_artifact
