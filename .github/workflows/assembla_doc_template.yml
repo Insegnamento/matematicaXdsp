@@ -32,7 +32,7 @@ jobs:
         FONT="fonts-dejavu"
         MATH_FONT="fonts-dejavu-extra"
         echo "MATH_FONT=$MATH_FONT" >> $GITHUB_ENV
-        echo "FONT=$FONTT" >> $GITHUB_ENV
+        echo "FONT=$FONT" >> $GITHUB_ENV
         apt-get install -y git bash tar wget xz-utils $FONT $MATH_FONT
         fc-cache -fv
         # Download in parallelo (background jobs)
